@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gestionart_frontend_ruben_y_jessica/config/common/resources/app_estilo_texto.dart';
-import 'package:gestionart_frontend_ruben_y_jessica/config/common/resources/estilo_botones.dart';
+import 'package:gestionart_frontend_ruben_y_jessica/config/common/resources/app_estilo_botones.dart';
 import 'package:gestionart_frontend_ruben_y_jessica/screens/Comprador/PantallaRegistroComprador.dart';
 import 'package:gestionart_frontend_ruben_y_jessica/screens/Vendedor/PantallaRegistroVendedor.dart';
 
@@ -18,7 +18,7 @@ void DialogoRegistro (BuildContext context){
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              style: EstiloBotones.botonSecundario,
+              style: AppEstiloBotones.botonSecundario,
             ),
           ],
         ),
@@ -27,25 +27,43 @@ void DialogoRegistro (BuildContext context){
           style: AppEstiloTexto.textoSecundario,  
         ),
         actions: [
-          TextButton(
-            onPressed: (){
-              Navigator.of(context).pop(); //Cerrar el dialogo al presionar el boton
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => const PantallaregistroComprador()));
-            }, 
-            child: const Text("Como comprador", style: AppEstiloTexto.textoPrincipal,),
-            style: EstiloBotones.botonPrincipal,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const PantallaregistroComprador(),
+                    ),
+                  );
+                },
+                style: AppEstiloBotones.botonPrincipal,
+                child: const Text(
+                  "Como comprador",
+                  style: AppEstiloTexto.textoPrincipal,
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const Pantallaregistrovendedor(),
+                    ),
+                  );
+                },
+                style: AppEstiloBotones.botonPrincipal,
+                child: const Text(
+                  "Como vendedor",
+                  style: AppEstiloTexto.textoPrincipal,
+                ),
+              ),
+            ],
           ),
-          SizedBox(width: 300),
-          TextButton(
-            onPressed: (){
-              Navigator.of(context).pop(); //Cerrar el dialogo al presionar el boton
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Pantallaregistrovendedor()));
-            }, 
-            child: const Text("Como vendedor", style: AppEstiloTexto.textoPrincipal,),
-            style: EstiloBotones.botonPrincipal,
-          )
         ],
       );
-    }
+    },
   );
 }

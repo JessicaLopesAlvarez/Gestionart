@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gestionart_frontend_ruben_y_jessica/config/common/resources/app_colores.dart';
 import 'package:gestionart_frontend_ruben_y_jessica/config/common/resources/app_estilo_texto.dart';
-import 'package:gestionart_frontend_ruben_y_jessica/config/common/resources/estilo_botones.dart';
+import 'package:gestionart_frontend_ruben_y_jessica/config/common/resources/app_estilo_botones.dart';
 import 'package:gestionart_frontend_ruben_y_jessica/widgets/dialogs/dialogoRegistro.dart';
 
 class Pantallainiciosesion extends StatefulWidget {
@@ -62,13 +62,13 @@ class _PantallainiciosesionState extends State<Pantallainiciosesion> {
                       ),
               ),
               ElevatedButton(
-                style: EstiloBotones.botonPrincipal,
+                style: AppEstiloBotones.botonPrincipal,
                 onPressed: null,
                 child: Text("Iniciar Sesión", style: AppEstiloTexto.textoPrincipal,)
               ),
               SizedBox(height: 20,),
               ElevatedButton(
-                style: EstiloBotones.botonPrincipal,
+                style: AppEstiloBotones.botonPrincipal,
                 onPressed: (){
                   DialogoRegistro(context);
                 },

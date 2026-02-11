@@ -4,8 +4,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gestionart_frontend_ruben_y_jessica/config/common/resources/app_colores.dart';
 import 'package:gestionart_frontend_ruben_y_jessica/config/common/resources/app_estilo_texto.dart';
-import 'package:gestionart_frontend_ruben_y_jessica/config/common/resources/estilo_botones.dart';
+import 'package:gestionart_frontend_ruben_y_jessica/config/common/resources/app_estilo_botones.dart';
 import 'package:gestionart_frontend_ruben_y_jessica/config/common/utils/CameraGalleryService.dart';
+import 'package:gestionart_frontend_ruben_y_jessica/config/common/utils/validators/Validators.dart';
 import 'package:gestionart_frontend_ruben_y_jessica/screens/Comprador/PantallaInicioComprador.dart';
 import 'package:gestionart_frontend_ruben_y_jessica/screens/PantallaInicioSesion.dart';
 
@@ -24,8 +25,16 @@ class _PantallaregistroCompradorState extends State<PantallaregistroComprador> {
   String _correoElectronico = "";
   String _contrasena = "";
   String _contrasena2 = "";
-
   String? photoPath = "";
+  
+  void _validarComprador(){
+    final isFormValid = _formKey.currentState!.validate();
+    if(isFormValid){
+      Navigator.pop(context);
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,6 +64,7 @@ class _PantallaregistroCompradorState extends State<PantallaregistroComprador> {
                       labelStyle: AppEstiloTexto.textoPrincipal,
                       border: OutlineInputBorder(),
                     ),
+                    validator: (value) => Validators.validateName(value),
                     onChanged: (value) => _nombre = value,
                   ),
                 ),
@@ -67,6 +77,7 @@ class _PantallaregistroCompradorState extends State<PantallaregistroComprador> {
                       labelStyle: AppEstiloTexto.textoPrincipal,
                       border: OutlineInputBorder(),
                     ),
+                    validator: (value) => Validators.validateDireccion(value),
                     onChanged: (value) => _direccion = value,
                   ),
                 ),
@@ -79,6 +90,7 @@ class _PantallaregistroCompradorState extends State<PantallaregistroComprador> {
                       labelStyle: AppEstiloTexto.textoPrincipal,
                       border: OutlineInputBorder(),
                     ),
+                    validator: (value) => Validators.validateEmail(value),
                     onChanged: (value) => _correoElectronico = value,
                   ),
                 ),
@@ -86,11 +98,13 @@ class _PantallaregistroCompradorState extends State<PantallaregistroComprador> {
                 SizedBox(
                   width: 400,
                   child: TextFormField(
+                    obscureText: true,
                     decoration: const InputDecoration(
                       labelText: "Contraseña",
                       labelStyle: AppEstiloTexto.textoPrincipal,
                       border: OutlineInputBorder(),
                     ),
+                    validator: (value) => Validators.validateEmpty(value),
                     onChanged: (value) => _contrasena = value,
                   ),
                 ),
@@ -98,11 +112,13 @@ class _PantallaregistroCompradorState extends State<PantallaregistroComprador> {
                 SizedBox(
                   width: 400,
                   child: TextFormField(
+                    obscureText: true,
                     decoration: const InputDecoration(
                       labelText: "Repita la contraseña",
                       labelStyle: AppEstiloTexto.textoPrincipal,
                       border: OutlineInputBorder(),
                     ),
+                    validator: (value) => Validators.validatePassword(value, _contrasena),
                     onChanged: (value) => _contrasena2 = value,
                   ),
                 ),
@@ -161,25 +177,20 @@ class _PantallaregistroCompradorState extends State<PantallaregistroComprador> {
                 SizedBox(
                   width: 400,
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       ElevatedButton(
-                        style: EstiloBotones.botonPrincipal,
+                        style: AppEstiloBotones.botonPrincipal,
                         onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  const Pantallainiciocomprador(),
-                            ),
-                          );
+                          _validarComprador();
                         },
                         child: Text(
                           "Resgistrarme",
                           style: AppEstiloTexto.textoPrincipal,
                         ),
                       ),
-                      SizedBox(width: 90),
                       ElevatedButton(
-                        style: EstiloBotones.botonPrincipal,
+                        style: AppEstiloBotones.botonPrincipal,
                         onPressed: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(

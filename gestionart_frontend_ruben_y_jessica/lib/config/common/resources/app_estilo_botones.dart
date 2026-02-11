@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gestionart_frontend_ruben_y_jessica/config/common/resources/app_colores.dart';
 
-class EstiloBotones {
+class AppEstiloBotones {
   static const ButtonStyle botonPrincipal = ButtonStyle(
     fixedSize: MaterialStatePropertyAll(Size(150,50)),
     backgroundColor: MaterialStatePropertyAll(AppColores.colorPrimario),
