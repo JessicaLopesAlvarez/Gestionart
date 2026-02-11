@@ -10,7 +10,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        useMaterial3: false,
+        inputDecorationTheme: const InputDecorationTheme(
+          border: OutlineInputBorder(),
+        ),
+        iconTheme: const IconThemeData(
+          color: Colors.black,
+        ),
+      ),
+      debugShowCheckedModeBanner: false, //No muestra la etiqueta debug del appbar
       home: const Pantallainiciosesion(),
     );
   }

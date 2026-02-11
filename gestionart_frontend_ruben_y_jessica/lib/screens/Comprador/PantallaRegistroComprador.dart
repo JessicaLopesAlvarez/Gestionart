@@ -7,8 +7,11 @@ import 'package:gestionart_frontend_ruben_y_jessica/config/common/resources/app_
 import 'package:gestionart_frontend_ruben_y_jessica/config/common/resources/app_estilo_botones.dart';
 import 'package:gestionart_frontend_ruben_y_jessica/config/common/utils/CameraGalleryService.dart';
 import 'package:gestionart_frontend_ruben_y_jessica/config/common/utils/validators/Validators.dart';
+import 'package:gestionart_frontend_ruben_y_jessica/controllers/ControllerGeneral.dart';
+import 'package:gestionart_frontend_ruben_y_jessica/models/Comprador.dart';
 import 'package:gestionart_frontend_ruben_y_jessica/screens/Comprador/PantallaInicioComprador.dart';
 import 'package:gestionart_frontend_ruben_y_jessica/screens/PantallaInicioSesion.dart';
+import 'package:gestionart_frontend_ruben_y_jessica/services/LogicaComprador.dart';
 
 class PantallaregistroComprador extends StatefulWidget {
   const PantallaregistroComprador({super.key});
@@ -24,12 +27,31 @@ class _PantallaregistroCompradorState extends State<PantallaregistroComprador> {
   String _direccion = "";
   String _correoElectronico = "";
   String _contrasena = "";
+  bool _obscurePassword1 = true;
+  bool _obscurePassword2 = true;
   String _contrasena2 = "";
   String? photoPath = "";
   
   void _validarComprador(){
     final isFormValid = _formKey.currentState!.validate();
     if(isFormValid){
+      if(ControllerGeneral.nombreEnUso(_nombre)){
+        const snackBar = SnackBar(content: Text('El nombre introducido ya existe'));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        return;
+      }
+      if(ControllerGeneral.emailEnUso(_correoElectronico)){
+        const snackBar = SnackBar(content: Text('El correo electrónico introducido ya existe'));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        return;
+      }
+      LogicaComprador.anadirComprador(Comprador(
+       correoElectronico: _correoElectronico!, 
+        nombre: _nombre!, 
+        contrasena: _contrasena!, 
+        direccion: _direccion!,
+        imagen: photoPath
+      ));
       Navigator.pop(context);
     }
   }
@@ -98,11 +120,24 @@ class _PantallaregistroCompradorState extends State<PantallaregistroComprador> {
                 SizedBox(
                   width: 400,
                   child: TextFormField(
-                    obscureText: true,
-                    decoration: const InputDecoration(
+                    obscureText: _obscurePassword1,
+                    decoration: InputDecoration(
                       labelText: "Contraseña",
                       labelStyle: AppEstiloTexto.textoPrincipal,
-                      border: OutlineInputBorder(),
+                      border: const OutlineInputBorder(),
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            _obscurePassword1 = !_obscurePassword1;
+                          });
+                        },
+                        icon: Icon(
+                          _obscurePassword1
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
+                        color: AppColores.colorSecundario,
+                      ),
                     ),
                     validator: (value) => Validators.validateEmpty(value),
                     onChanged: (value) => _contrasena = value,
@@ -112,11 +147,24 @@ class _PantallaregistroCompradorState extends State<PantallaregistroComprador> {
                 SizedBox(
                   width: 400,
                   child: TextFormField(
-                    obscureText: true,
-                    decoration: const InputDecoration(
+                    obscureText: _obscurePassword2,
+                    decoration: InputDecoration(
                       labelText: "Repita la contraseña",
                       labelStyle: AppEstiloTexto.textoPrincipal,
-                      border: OutlineInputBorder(),
+                      border: const OutlineInputBorder(),
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            _obscurePassword2 = !_obscurePassword2;
+                          });
+                        },
+                        icon: Icon(
+                          _obscurePassword2
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
+                        color: AppColores.colorSecundario,
+                      ),
                     ),
                     validator: (value) => Validators.validatePassword(value, _contrasena),
                     onChanged: (value) => _contrasena2 = value,
@@ -191,12 +239,8 @@ class _PantallaregistroCompradorState extends State<PantallaregistroComprador> {
                       ),
                       ElevatedButton(
                         style: AppEstiloBotones.botonPrincipal,
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const Pantallainiciosesion(),
-                            ),
-                          );
+                        onPressed: (){
+                          Navigator.pop(context);
                         },
                         child: Text(
                           "Cancelar",

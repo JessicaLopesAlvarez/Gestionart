@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Pantallainiciocomprador extends StatefulWidget {
-  const Pantallainiciocomprador({super.key});
+  final dynamic comprador;
+
+  const Pantallainiciocomprador({super.key, required this.comprador});
 
   @override
   State<Pantallainiciocomprador> createState() => _PantallainiciocompradorState();
@@ -10,6 +12,10 @@ class Pantallainiciocomprador extends StatefulWidget {
 class _PantallainiciocompradorState extends State<Pantallainiciocomprador> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+
+      ),
+    );
   }
 }
