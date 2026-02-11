@@ -6,7 +6,7 @@ class Vendedor {
   String nombre;
   String imagen;
   String contrasena;
-  List<Articulo> listaArticulos = [];
+  List<Articulo>? listaArticulos = [];
   List<Anuncio>? listaAnuncios = [];
 
 

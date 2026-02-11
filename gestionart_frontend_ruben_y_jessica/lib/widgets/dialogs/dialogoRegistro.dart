@@ -24,6 +24,7 @@ void DialogoRegistro (BuildContext context){
         ),
         content: const Text(
           "Seleccione una de las siguientes opciones, una vez se haya registrado un correo no podrá vovler a registrarlo como otro tipo de usuario",
+          style: AppEstiloTexto.textoSecundario,  
         ),
         actions: [
           TextButton(
@@ -31,7 +32,7 @@ void DialogoRegistro (BuildContext context){
               Navigator.of(context).pop(); //Cerrar el dialogo al presionar el boton
               Navigator.of(context).push(MaterialPageRoute(builder: (context) => const PantallaregistroComprador()));
             }, 
-            child: const Text("Como comprador"),
+            child: const Text("Como comprador", style: AppEstiloTexto.textoPrincipal,),
             style: EstiloBotones.botonPrincipal,
           ),
           SizedBox(width: 300),
@@ -40,7 +41,7 @@ void DialogoRegistro (BuildContext context){
               Navigator.of(context).pop(); //Cerrar el dialogo al presionar el boton
               Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Pantallaregistrovendedor()));
             }, 
-            child: const Text("Como vendedor"),
+            child: const Text("Como vendedor", style: AppEstiloTexto.textoPrincipal,),
             style: EstiloBotones.botonPrincipal,
           )
         ],

@@ -37,6 +37,7 @@ class _PantallainiciosesionState extends State<Pantallainiciosesion> {
                 child:TextFormField(
                 decoration: const InputDecoration(
                     labelText: "Correo electronico",
+                    labelStyle: AppEstiloTexto.textoPrincipal,
                     border: OutlineInputBorder(),
                   ),
                 ), 
@@ -47,6 +48,7 @@ class _PantallainiciosesionState extends State<Pantallainiciosesion> {
                 child:TextFormField(
                 decoration: const InputDecoration(
                     labelText: "Contraseña",
+                    labelStyle: AppEstiloTexto.textoPrincipal,
                     border: OutlineInputBorder(),
                   ),
                 ), 
@@ -56,13 +58,13 @@ class _PantallainiciosesionState extends State<Pantallainiciosesion> {
                 width: 400,
                 child: TextButton(
                         onPressed:null, 
-                        child: Text("¿Olvidaste tu contraseña?")
+                        child: Text("¿Olvidaste tu contraseña?", style: AppEstiloTexto.textoSecundario)
                       ),
               ),
               ElevatedButton(
                 style: EstiloBotones.botonPrincipal,
                 onPressed: null,
-                child: Text("Iniciar Sesión")
+                child: Text("Iniciar Sesión", style: AppEstiloTexto.textoPrincipal,)
               ),
               SizedBox(height: 20,),
               ElevatedButton(
@@ -70,7 +72,7 @@ class _PantallainiciosesionState extends State<Pantallainiciosesion> {
                 onPressed: (){
                   DialogoRegistro(context);
                 },
-                child: Text("Registrarse")
+                child: Text("Registrarse", style: AppEstiloTexto.textoPrincipal)
               ),
             ],
           ),

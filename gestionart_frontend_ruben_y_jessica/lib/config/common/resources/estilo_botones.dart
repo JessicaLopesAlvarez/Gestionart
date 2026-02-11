@@ -3,7 +3,7 @@ import 'package:gestionart_frontend_ruben_y_jessica/config/common/resources/app_
 
 class EstiloBotones {
   static const ButtonStyle botonPrincipal = ButtonStyle(
-    fixedSize: MaterialStatePropertyAll(Size(300,50)),
+    fixedSize: MaterialStatePropertyAll(Size(150,50)),
     backgroundColor: MaterialStatePropertyAll(AppColores.colorPrimario),
     foregroundColor: MaterialStatePropertyAll(AppColores.colorTextoSecundario)
   );
