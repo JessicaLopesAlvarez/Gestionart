@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
+      theme: ThemeData( // Esto sirve para permitir un estilo predeterminado en iconos y demás cosas estéticas para que  sean visibles y editables
         useMaterial3: false,
         inputDecorationTheme: const InputDecorationTheme(
           border: OutlineInputBorder(),
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false, //No muestra la etiqueta debug del appbar
-      home: const Pantallainiciosesion(),
+      home: const Pantallainiciosesion(), // Muestra directamente la pantalla de inicio de sesión
     );
   }
 }
